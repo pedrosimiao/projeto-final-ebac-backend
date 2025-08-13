@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*/bin/activate
+*/include/
+*/lib/python*/
+*/share/python*/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.tox/
+.coverage
+.coverage.*
+.ipynb_checkpoints/
+.ruff_cache/
+
+# Django
+*.log
+*.sqlite3
+db.sqlite3
+/media/
+/static_collected/
+local_settings.py
+
+
+# Arquivos de IDE
+.idea/ # PyCharm
+.vscode/ # VS Code
+*.sublime-project
+*.sublime-workspace
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# Arquivos de sistema de empacotamento (Poetry, pipenv)
+# poetry.lock
+
+# Arquivos gerados pelo Docker (seed_data.py em entrypoint.sh)
+mock_passwords.txt
+seeded.flag

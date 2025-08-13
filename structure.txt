@@ -1,0 +1,389 @@
+
+C:\Users\simia\Desktop\EBAC\Full Stack Python\Projeto Final\twitter-clone-backend
+├── accounts
+|  ├── admin.py
+|  ├── apps.py
+|  ├── management
+|  |  └── commands
+|  |     ├── seed_data.py
+|  |     └── __pycache__
+|  ├── migrations
+|  |  ├── 0001_initial.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── 0001_initial.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── models
+|  |  ├── user.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── user.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── pagination.py
+|  ├── serializers
+|  |  ├── change_password_serializer.py
+|  |  ├── custom_token_serializer.py
+|  |  ├── delete_account_serializer.py
+|  |  ├── profile_update_serializer.py
+|  |  ├── signup_serializer.py
+|  |  ├── user_serializer.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── change_password_serializer.cpython-312.pyc
+|  |     ├── custom_token_serializer.cpython-312.pyc
+|  |     ├── delete_account_serializer.cpython-312.pyc
+|  |     ├── profile_update_serializer.cpython-312.pyc
+|  |     ├── signup_serializer.cpython-312.pyc
+|  |     ├── user_serializer.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── urls.py
+|  ├── views
+|  |  ├── change_password_view.py
+|  |  ├── custom_token_view.py
+|  |  ├── delete_account_view.py
+|  |  ├── signup_view.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── change_password_view.cpython-312.pyc
+|  |     ├── custom_token_view.cpython-312.pyc
+|  |     ├── delete_account_view.cpython-312.pyc
+|  |     ├── signup_view.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── viewsets
+|  |  ├── user_viewset.py
+|  |  ├── __init.py
+|  |  └── __pycache__
+|  |     └── user_viewset.cpython-312.pyc
+|  ├── __init__.py
+|  └── __pycache__
+|     ├── admin.cpython-312.pyc
+|     ├── apps.cpython-312.pyc
+|     ├── pagination.cpython-312.pyc
+|     ├── urls.cpython-312.pyc
+|     └── __init__.cpython-312.pyc
+├── comments
+|  ├── admin.py
+|  ├── apps.py
+|  ├── migrations
+|  |  ├── 0001_initial.py
+|  |  ├── 0002_alter_comment_options_remove_comment_updated_at.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── 0001_initial.cpython-312.pyc
+|  |     ├── 0002_alter_comment_options_remove_comment_updated_at.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── models
+|  |  ├── comments.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── comments.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── pagination.py
+|  ├── serializers
+|  |  ├── comment_serializer.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── comment_serializer.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── signals.py
+|  ├── urls.py
+|  ├── viewsets
+|  |  ├── comment_viewset.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── comment_viewset.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── __init__.py
+|  └── __pycache__
+|     ├── admin.cpython-312.pyc
+|     ├── apps.cpython-312.pyc
+|     ├── pagination.cpython-312.pyc
+|     ├── signals.cpython-312.pyc
+|     ├── urls.cpython-312.pyc
+|     └── __init__.cpython-312.pyc
+├── config
+|  ├── asgi.py
+|  ├── pagination
+|  |  ├── cursor_pagination.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── cursor_pagination.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── settings.py
+|  ├── urls.py
+|  ├── wsgi.py
+|  ├── __init__.py
+|  └── __pycache__
+|     ├── settings.cpython-312.pyc
+|     ├── urls.cpython-312.pyc
+|     ├── wsgi.cpython-312.pyc
+|     └── __init__.cpython-312.pyc
+├── convertedComments.json
+├── convertedPosts.json
+├── convertedUsers.json
+├── db.sqlite3
+├── docker-compose.yml
+├── Dockerfile
+├── entrypoint.sh
+├── follows
+|  ├── admin.py
+|  ├── apps.py
+|  ├── migrations
+|  |  ├── 0001_initial.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── 0001_initial.cpython-312.pyc
+|  |     ├── 0002_alter_follow_id.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── models
+|  |  ├── follower.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── follower.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── serializers
+|  |  ├── follower_serializer.py
+|  |  └── __init__.py
+|  ├── urls.py
+|  ├── viewsets
+|  |  ├── follower_viewset.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── follower_viewset.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── __init__.py
+|  └── __pycache__
+|     ├── admin.cpython-312.pyc
+|     ├── apps.cpython-312.pyc
+|     ├── urls.cpython-312.pyc
+|     └── __init__.cpython-312.pyc
+├── hashtags
+|  ├── admin.py
+|  ├── apps.py
+|  ├── migrations
+|  |  ├── 0001_initial.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── 0001_initial.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── models
+|  |  ├── hashtags.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── hashtags.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── serializers
+|  |  ├── hashtag_serializer.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── hashtag_serializer.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── tests.py
+|  ├── urls.py
+|  ├── viewsets
+|  |  ├── hashtag_viewset.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── hashtag_viewset.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── __init__.py
+|  └── __pycache__
+|     ├── admin.cpython-312.pyc
+|     ├── apps.cpython-312.pyc
+|     ├── urls.cpython-312.pyc
+|     └── __init__.cpython-312.pyc
+├── import_mocks.py
+├── likes
+|  ├── admin.py
+|  ├── apps.py
+|  ├── migrations
+|  |  ├── 0001_initial.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── 0001_initial.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── models
+|  |  ├── likes.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── likes.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── serializers
+|  |  ├── like_serializer.py
+|  |  └── __init__.py
+|  ├── urls.py
+|  ├── viewsets
+|  |  ├── like_viewset.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── like_viewset.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── __init__.py
+|  └── __pycache__
+|     ├── admin.cpython-312.pyc
+|     ├── apps.cpython-312.pyc
+|     ├── urls.cpython-312.pyc
+|     └── __init__.cpython-312.pyc
+├── manage.py
+├── media
+|  ├── cover_images
+|  |  ├── ada-lovelace-cover-image.jpg
+|  |  └── pedro-simiao-cover.jpeg
+|  ├── post_images
+|  |  ├── alan-turing-and-turing-machine.jpg
+|  |  ├── alan-turing-and-turing-machine_qDf6DfN.jpg
+|  |  ├── alan-turing-enigma-machine.jpg
+|  |  ├── alan-turing-enigma-machine_iU5bebk.jpg
+|  |  ├── albert-einstein-and-his-homies.jpg
+|  |  ├── albert-einstein-and-his-homies_E6yGGzz.jpg
+|  |  ├── claude-shannon-information-theory.jpg
+|  |  ├── claude-shannon-information-theory_Q3dtiGx.jpg
+|  |  ├── claude-shannon-jugglin.jpg
+|  |  ├── claude-shannon-jugglin_0ZYZkLU.jpg
+|  |  ├── donald-knuth-piano.jpg
+|  |  ├── donald-knuth-piano_NoW1eOa.jpg
+|  |  ├── donald-knuth-typewriter.jpg
+|  |  ├── donald-knuth-typewriter_77EVPua.jpg
+|  |  ├── edsger-dijkstra-class.jpg
+|  |  ├── edsger-dijkstra-class_pKUd8qk.jpg
+|  |  ├── edsger-dijkstra-on-bike.jpg
+|  |  ├── edsger-dijkstra-on-bike_BhpKKIN.jpg
+|  |  ├── grace-hopper-team.jpg
+|  |  ├── grace-hopper-team_EQN3R1C.jpg
+|  |  ├── grace-hopper-yale.jpg
+|  |  ├── grace-hopper-yale_lNSLOHR.jpg
+|  |  ├── john-von-neumann-chillin.jpg
+|  |  ├── john-von-neumann-chillin_9yXGP0h.jpg
+|  |  ├── john-von-neumann-oppenheimer.jpg
+|  |  ├── john-von-neumann-oppenheimer_pb50D8v.jpg
+|  |  ├── linus-torvalds-woke.jpg
+|  |  ├── linus-torvalds-woke_ZqlFwGI.jpg
+|  |  ├── max-planck-hangin-with-enstein.jpg
+|  |  ├── max-planck-hangin-with-enstein_LyoTAWr.jpg
+|  |  ├── niels-bohr-lab.jpg
+|  |  ├── niels-bohr-lab_UOElnbv.jpg
+|  |  ├── paul-dirac-class.jpg
+|  |  ├── paul-dirac-class_2IqPyTa.jpg
+|  |  ├── steve-wozniak-apple-1.jpg
+|  |  ├── steve-wozniak-apple-1_OKTUUTf.jpg
+|  |  ├── steve-wozniak-nerd.jpg
+|  |  ├── steve-wozniak-nerd_7zWfsUZ.jpg
+|  |  ├── tim-berners-lee-1998.png
+|  |  └── tim-berners-lee-1998_XKxBq0z.png
+|  └── profile_pictures
+|     ├── ada-lovelace.jpg
+|     ├── alan-turing.jpeg
+|     ├── albert-einstein.jpeg
+|     ├── bill-gates.jpg
+|     ├── carl-sagan.jpeg
+|     ├── claude-shannon.jpg
+|     ├── donald-knuth.jpg
+|     ├── edsger-dijkstra.jpeg
+|     ├── erwin-schrodinger.jpg
+|     ├── grace-hopper.jpg
+|     ├── john-von-neumann.jpg
+|     ├── linus-torvalds.jpeg
+|     ├── marie-curie.jpg
+|     ├── max-planck.jpg
+|     ├── niels-bohr.jpeg
+|     ├── paul-dirac.jpg
+|     ├── pedro-simiao.jpeg
+|     ├── richard-feynman.jpeg
+|     ├── stephen-hawking.jpeg
+|     ├── steve-wozniak.jpg
+|     └── tim-berners-lee.jpg
+├── notifications
+|  ├── admin.py
+|  ├── apps.py
+|  ├── migrations
+|  |  ├── 0001_initial.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── 0001_initial.cpython-312.pyc
+|  |     ├── 0002_alter_notification_options_and_more.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── models
+|  |  ├── notifications.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── notifications.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── pagination.py
+|  ├── serializers
+|  |  ├── notification_serializer.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── notification_serializer.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── signals.py
+|  ├── urls.py
+|  ├── views
+|  |  ├── notification_view.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── notification_view.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── viewsets
+|  |  ├── notification_viewset.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── notification_viewset.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── __init__.py
+|  └── __pycache__
+|     ├── admin.cpython-312.pyc
+|     ├── apps.cpython-312.pyc
+|     ├── pagination.cpython-312.pyc
+|     ├── signals.cpython-312.pyc
+|     ├── urls.cpython-312.pyc
+|     └── __init__.cpython-312.pyc
+├── poetry.lock
+├── posts
+|  ├── admin.py
+|  ├── apps.py
+|  ├── migrations
+|  |  ├── 0001_initial.py
+|  |  ├── 0002_alter_post_options.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── 0001_initial.cpython-312.pyc
+|  |     ├── 0002_alter_post_options.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── models
+|  |  ├── posts.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── posts.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── pagination.py
+|  ├── serializers
+|  |  ├── post_serializer.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── post_serializer.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── signals.py
+|  ├── urls.py
+|  ├── viewsets
+|  |  ├── post_viewset.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── post_viewset.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
+|  ├── __init__.py
+|  └── __pycache__
+|     ├── admin.cpython-312.pyc
+|     ├── apps.cpython-312.pyc
+|     ├── pagination.cpython-312.pyc
+|     ├── signals.cpython-312.pyc
+|     ├── urls.cpython-312.pyc
+|     └── __init__.cpython-312.pyc
+├── pyproject.toml
+├── seed_source_media
+└── structure.txt
+
+directory: 84 file: 297
+
+
+
+[2K[1G

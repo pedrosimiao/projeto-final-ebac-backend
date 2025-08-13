@@ -1,0 +1,38 @@
+# Bytecode Python
+__pycache__/
+*.py[cod]
+
+*.sqlite3
+*.db
+
+.venv/
+venv/
+
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+.git/
+.gitignore
+
+*.log
+
+.env
+.env.*
+
+# Arquivos de build/output
+dist/
+build/
+*.egg-info/
+
+README.md
+structure.txt
+
+# Media de uploads gerados pelo usuário (montar via volume)
+media/
+
+mock_passwords.txt
+
+docker-compose.yml
+.dockerignore

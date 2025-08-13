@@ -1,0 +1,113 @@
+# service: descrição do container (images, env variables, volumes to mount, ports to access/expose)
+# imagem: snapshot do app (tipo um ISO)
+# container: instância do service configurado
+# volume: espaço para armazenamento persistente (fora do container)
+services:
+  # -- WEB --
+  #
+  # serviço web: run app django
+  web:
+    # build: construção de imagem personalizada
+    # pegar o Dockerfile da raiz do projeto (context: .)
+    # usar estágio development (target: development) pra montar a imagem
+    build:
+      # context: diretório atual (raíz do projeto)
+      context: .
+
+      # dockerfile: diretório raíz do projeto/Dockerfile
+      dockerfile: Dockerfile
+
+      # alvo: estágio de desenvolvimento (stage development no Dockerfile)
+      target: development
+
+      # args do .env sendo passados pro build
+      args:
+        SECRET_KEY_ARG: ${SECRET_KEY}
+        DEBUG_ARG: ${DEBUG}
+        DATABASE_URL_ARG: ${DATABASE_URL}
+    
+    # - "8000:8000": mapeamento --> porta 8000 do container: porta 8000 localhost
+    # access app via http://localhost:8000.
+    ports:
+      - "8000:8000"
+    
+
+    # sincronização de diretórios do diretório de trabalho LOCAL para o /app do container
+    # save all files in /app (mock_passwords.txt, seeded.flag, etc.) in dir local project
+    # atualização do container em tempo real em caso de alterações salvas no código local
+    # mudanças no código sem reconstruir a imagem
+    # pesistência dos uploads (arquivos de mídia)
+    volumes:
+      # Host: .(projeto local)
+      # Container /app
+      # bind mount - espelho/atalho entre o dir local e o dir dentro do container
+      - .:/app
+
+      # Host: volume media_data
+      # Container /app/media
+      - media_data:/app/media
+
+      # mapeiando pasta media local para um local de leitura no container
+      - ./media:/app/seed_source_media:ro
+    
+    # loadar variáveis do arquivo .env
+    env_file:
+      - .env
+    
+    # complementar/sobrescrever o env_file
+    environment:
+      DJANGO_ALLOWED_HOSTS: "localhost 127.0.0.1 0.0.0.0"
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+    # service web depende do service db para iniciar
+    # 'service_healthy' --> await healthcheck do DB
+    depends_on:
+      db:
+        condition: service_healthy
+    
+    # sobrescrevendo o CMD do Dockerfile
+    # 'command' --> comando pardrão: argumento para o ENTRYPOINT
+    command: poetry run python manage.py runserver 0.0.0.0:8000
+  
+
+  # --- DB ---
+
+  # serviço db: run db PostgreSQL
+  db:
+    # imagem oficial PostgreSQL
+    image: postgres:15-alpine
+    
+    # variáveis de ambiente para o db
+    # devem corresponder env variables em DATABASE_URL do app Django.
+    environment:
+      POSTGRES_DB: twitter_clone_dev_db # nome
+      POSTGRES_USER: twitter_clone_dev  # usuário
+      POSTGRES_PASSWORD: twitter_clone_dev # senha
+      LANG: en_US.utf8 # variável de ambiente LANG para o container
+      LC_ALL: en_US.utf8 # variável de ambiente LC_ALL para o container, sobrescreve qualquer outra variável de locale
+    
+    # persistência de dados do db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    
+    # expose da port default Postgres
+    ports:
+      - "5432:5432"
+
+    # healthcheck db
+    # service 'web' therefore entrypoint.sh awaits...
+    # test: try connect via env variables
+    # interval, timeout...: freq/behavior configs
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5 # if retries > 5: service unhealthy
+      start_period: 10s # tempo p/ init do container antes de start checking
+
+# nomes dos volumes usados pelos services
+volumes:
+  postgres_data:
+  media_data:
