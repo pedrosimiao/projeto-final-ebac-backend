@@ -43,3 +43,4 @@ Thumbs.db # Windows
 # Arquivos gerados pelo Docker (seed_data.py em entrypoint.sh)
 mock_passwords.txt
 seeded.flag
+structure.txt
