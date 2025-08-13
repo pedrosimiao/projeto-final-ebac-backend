@@ -1,5 +1,3 @@
-[Versão em Português](https://www.google.com/search?q=/README.md)
-
 # EBAC Final Project - Backend
 
 [](https://www.google.com/search?q=https://github.com/SEU_USUARIO/projeto-final-ebac-backend)
