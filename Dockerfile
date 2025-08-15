@@ -139,8 +139,7 @@ COPY --from=development /opt/venv /opt/venv
 # copia o código-fonte da aplicação (estáticos coletados) para a imagem final.
 COPY --from=development /app /app
 
-# Copia media direto para /app/media
-COPY ./media /app/media
+RUN mkdir -p /app/media && chmod -R 777 /app/media
 
 # define porta 8000 para acesso externo
 EXPOSE 8000
@@ -151,4 +150,4 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # define ENTRYPOINT & CMD padrão para o entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["poetry", "run", "gunicorn", "--workers=4", "--bind=0.0.0.0:8000", "config.wsgi:application"]
+CMD ["poetry", "run", "gunicorn", "--workers=4", "--bind=0.0.0.0:${PORT:-8000}", "config.wsgi:application"]
