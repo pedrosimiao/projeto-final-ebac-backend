@@ -36,6 +36,15 @@ C:\Users\simia\Desktop\EBAC\Full Stack Python\Projeto Final\twitter-clone-backen
 |  |     ├── signup_serializer.cpython-312.pyc
 |  |     ├── user_serializer.cpython-312.pyc
 |  |     └── __init__.cpython-312.pyc
+|  ├── tests
+|  |  ├── factories.py
+|  |  ├── test_auth_views.py
+|  |  ├── test_profile_views.py
+|  |  ├── __init__.py
+|  |  └── __pycache__
+|  |     ├── factories.cpython-312.pyc
+|  |     ├── test_auth_views.cpython-312.pyc
+|  |     └── __init__.cpython-312.pyc
 |  ├── urls.py
 |  ├── views
 |  |  ├── change_password_view.py
@@ -86,6 +95,10 @@ C:\Users\simia\Desktop\EBAC\Full Stack Python\Projeto Final\twitter-clone-backen
 |  |     ├── comment_serializer.cpython-312.pyc
 |  |     └── __init__.cpython-312.pyc
 |  ├── signals.py
+|  ├── tests
+|  |  ├── factories.py
+|  |  ├── test_comment_views.py
+|  |  └── __init__.py
 |  ├── urls.py
 |  ├── viewsets
 |  |  ├── comment_viewset.py
@@ -122,6 +135,7 @@ C:\Users\simia\Desktop\EBAC\Full Stack Python\Projeto Final\twitter-clone-backen
 ├── convertedPosts.json
 ├── convertedUsers.json
 ├── db.sqlite3
+├── docker-compose.prod.yml
 ├── docker-compose.yml
 ├── Dockerfile
 ├── entrypoint.sh
@@ -143,6 +157,10 @@ C:\Users\simia\Desktop\EBAC\Full Stack Python\Projeto Final\twitter-clone-backen
 |  |     └── __init__.cpython-312.pyc
 |  ├── serializers
 |  |  ├── follower_serializer.py
+|  |  └── __init__.py
+|  ├── tests
+|  |  ├── factories.py
+|  |  ├── test_follower_view.py
 |  |  └── __init__.py
 |  ├── urls.py
 |  ├── viewsets
@@ -178,7 +196,10 @@ C:\Users\simia\Desktop\EBAC\Full Stack Python\Projeto Final\twitter-clone-backen
 |  |  └── __pycache__
 |  |     ├── hashtag_serializer.cpython-312.pyc
 |  |     └── __init__.cpython-312.pyc
-|  ├── tests.py
+|  ├── tests
+|  |  ├── factories.py
+|  |  ├── test_hashtag_view.py
+|  |  └── __init__.py
 |  ├── urls.py
 |  ├── viewsets
 |  |  ├── hashtag_viewset.py
@@ -210,6 +231,10 @@ C:\Users\simia\Desktop\EBAC\Full Stack Python\Projeto Final\twitter-clone-backen
 |  |     └── __init__.cpython-312.pyc
 |  ├── serializers
 |  |  ├── like_serializer.py
+|  |  └── __init__.py
+|  ├── tests
+|  |  ├── factories.py
+|  |  ├── test_like_view.py
 |  |  └── __init__.py
 |  ├── urls.py
 |  ├── viewsets
@@ -316,6 +341,10 @@ C:\Users\simia\Desktop\EBAC\Full Stack Python\Projeto Final\twitter-clone-backen
 |  |     ├── notification_serializer.cpython-312.pyc
 |  |     └── __init__.cpython-312.pyc
 |  ├── signals.py
+|  ├── tests
+|  |  ├── factories.py
+|  |  ├── test_notification_view.py
+|  |  └── __init__.py
 |  ├── urls.py
 |  ├── views
 |  |  ├── notification_view.py
@@ -363,6 +392,10 @@ C:\Users\simia\Desktop\EBAC\Full Stack Python\Projeto Final\twitter-clone-backen
 |  |     ├── post_serializer.cpython-312.pyc
 |  |     └── __init__.cpython-312.pyc
 |  ├── signals.py
+|  ├── tests
+|  |  ├── factories.py
+|  |  ├── test_post_views.py
+|  |  └── __init__.py
 |  ├── urls.py
 |  ├── viewsets
 |  |  ├── post_viewset.py
@@ -382,7 +415,7 @@ C:\Users\simia\Desktop\EBAC\Full Stack Python\Projeto Final\twitter-clone-backen
 ├── seed_source_media
 └── structure.txt
 
-directory: 84 file: 297
+directory: 92 file: 322
 
 
 

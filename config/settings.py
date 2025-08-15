@@ -19,17 +19,31 @@ from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env()
+env = environ.Env(DEBUG=(bool, False))
 environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env.bool("DEBUG", default=False)
-DATABASES = {"default": env.db()}
+DATABASES = {
+    "default": env.db(default="postgres://twitter_clone_dev:twitter_clone_dev@db:5432/twitter_clone_dev_db")
+}
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1", ".railway.app"])
+
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[
+    "https://*.railway.app",
+    "https://*.vercel.app",
+    "http://localhost:5173"
+])
+
+CORS_ALLOWED_ORIGINS = env.list(
+    "CORS_ALLOWED_ORIGINS", 
+    default=["http://localhost:5173"],
+)
+
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -40,8 +54,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "corsheaders",
-    "django_extensions",
-    "debug_toolbar",
     "accounts",
     "posts",
     "comments",
@@ -51,9 +63,13 @@ INSTALLED_APPS = [
     "hashtags",
 ]
 
+if DEBUG:
+    INSTALLED_APPS += ["django_extensions", "debug_toolbar"]
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -62,6 +78,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
+
+if DEBUG:
+    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
 
 ROOT_URLCONF = "config.urls"
 
@@ -84,15 +103,6 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 AUTH_USER_MODEL = "accounts.User"
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
@@ -125,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
@@ -143,31 +153,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
-# Caminho absoluto para 'collectstatic' copiar todos os arquivos 
-# estáticos dentro da (BASE_DIR) no container
+
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-# Configuração de mídia para uploads de arquivos
-MEDIA_URL = "/media/"  # URL pública para acessar os arquivos de mídia
-MEDIA_ROOT = os.path.join(
-    BASE_DIR, "media"
-)  # Caminho do sistema de arquivos onde os arquivos serão armazenados
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
-# Em desenvolvimento, você pode usar:
-# CORS_ALLOW_ALL_ORIGINS = True
+if DEBUG:
+    INTERNAL_IPS = ["127.0.0.1", "localhost"]
 
-# Em produção, prefira usar:
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-]
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-CORS_ALLOW_CREDENTIALS = True
-
-INTERNAL_IPS = [
-    "127.0.0.1",
-    "localhost",
-]
+if not DEBUG:
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    
+    SECURE_HSTS_SECONDS = 0
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+    SECURE_HSTS_PRELOAD = False
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

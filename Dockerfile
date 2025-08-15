@@ -104,10 +104,6 @@ RUN python -m venv $VIRTUAL_ENV \
 # copy * from twitter-clone-backend paste in /app (WORKDIR) 
 COPY . .
 
-# comando para coletar os arquivos estáticos
-# (JS, CSS, imagens) dos apps do projeto e mover para STATIC_ROOT
-# (WhiteNoise).
-RUN poetry run python manage.py collectstatic --noinput
 
 # copy script entrypoint & torna executável (stage development)
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh

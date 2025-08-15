@@ -4,7 +4,7 @@ set -eu
 SEED_FLAG="/app/seeded.flag"
 echo "Waiting for PostgreSQL server to be ready..."
 
-while ! pg_isready -h db -p 5432 -U ${POSTGRES_USER}; do
+while ! pg_isready -h ${DB_HOST:-db} -p 5432 -U ${POSTGRES_USER}; do
   echo "PostgreSQL server is unavailable - sleeping"
   sleep 1
 done
@@ -29,6 +29,11 @@ fi
 echo "Setting permissions for media directory..."
 chmod -R 777 /app/media
 echo "Media directory permissions set to 777."
+
+echo "Collecting static files..."
+poetry run python manage.py collectstatic --noinput
+echo "Static files collected."
+
 
 echo "Starting application..."
 exec "$@"
