@@ -139,6 +139,9 @@ COPY --from=development /opt/venv /opt/venv
 # copia o código-fonte da aplicação (estáticos coletados) para a imagem final.
 COPY --from=development /app /app
 
+# copia as midias para seed_source_media dentro do container
+COPY ./media /app/seed_source_media
+
 # define porta 8000 para acesso externo
 EXPOSE 8000
 
