@@ -141,6 +141,7 @@ COPY --from=development /app /app
 
 RUN mkdir -p /app/media && chmod -R 777 /app/media
 
+
 # define porta 8000 para acesso externo
 EXPOSE 8000
 
@@ -150,4 +151,4 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # define ENTRYPOINT & CMD padrão para o entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["poetry", "run", "gunicorn", "--workers=4", "--bind=0.0.0.0:$PORT", "config.wsgi:application"]
+CMD ["sh", "-c", "poetry run gunicorn --workers=4 --bind=0.0.0.0:${PORT:-8000} config.wsgi:application"]

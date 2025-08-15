@@ -34,6 +34,8 @@ from django.db import transaction
 # para FileField.save()
 from django.core.files import File
 
+from pathlib import Path
+
 from accounts.models import User
 from posts.models import Post
 
@@ -43,7 +45,7 @@ OLD_TO_NEW_USER_IDS = {}
 # dicionário para as senhas geradas para cada mock user
 MOCK_USER_PASSWORDS = {}
 
-SEED_SOURCE_MEDIA_DIR = settings.MEDIA_ROOT
+SOURCE_MEDIA_DIR = Path("/app/media")
 
 # Command
 # comando de gerenciamento customizado 
@@ -225,7 +227,7 @@ class Command(BaseCommand):
             # imagem de perfil
             if profile_pic_filename:
                 # caminho completo para a imagem na pasta de origem (media local, mapeada via .:/app no docker)
-                source_path = os.path.join(SEED_SOURCE_MEDIA_DIR, 'profile_pictures', profile_pic_filename)
+                source_path = os.path.join(SOURCE_MEDIA_DIR, 'profile_pictures', profile_pic_filename)
                 
                 if os.path.exists(source_path):
                     with open(source_path, 'rb') as f:
@@ -242,7 +244,7 @@ class Command(BaseCommand):
 
             # imagem de capa
             if cover_img_filename:
-                source_path = os.path.join(SEED_SOURCE_MEDIA_DIR, 'cover_images', cover_img_filename)
+                source_path = os.path.join(SOURCE_MEDIA_DIR, 'cover_images', cover_img_filename)
                 
                 # verifica se o arquivo existe fisicamente em /media/cover_images/cover-image.jpg
                 if os.path.exists(source_path):
@@ -305,7 +307,7 @@ class Command(BaseCommand):
             post_image_filename = post_data.get('image')
             if post_image_filename:
                 # caminho relativo /media/post_images/post-image.jpg
-                source_path = os.path.join(SEED_SOURCE_MEDIA_DIR, 'post_images', post_image_filename)
+                source_path = os.path.join(SOURCE_MEDIA_DIR, 'post_images', post_image_filename)
                 
                 # verifica se o arquivo existe fisicamente em /media/post_images/post-image.jpg
                 if os.path.exists(source_path):

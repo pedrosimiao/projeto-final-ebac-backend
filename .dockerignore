@@ -29,9 +29,6 @@ build/
 README.md
 structure.txt
 
-# Media de uploads gerados pelo usuário (montar via volume)
-media/
-
 mock_passwords.txt
 
 docker-compose.yml
