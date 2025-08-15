@@ -24,7 +24,6 @@ venv/
 *.log
 *.sqlite3
 db.sqlite3
-/media/
 /static_collected/
 local_settings.py
 
