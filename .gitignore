@@ -44,3 +44,7 @@ Thumbs.db # Windows
 mock_passwords.txt
 seeded.flag
 structure.txt
+
+
+# Environment files
+.env
