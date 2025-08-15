@@ -43,9 +43,7 @@ OLD_TO_NEW_USER_IDS = {}
 # dicionário para as senhas geradas para cada mock user
 MOCK_USER_PASSWORDS = {}
 
-# diretório onde as mídias de seeding estão localizadasdentro do container, 
-# via volume de leitura (- ./media:/app/seed_source_media:ro) em docker-compose.yml
-SEED_SOURCE_MEDIA_DIR = '/app/seed_source_media' # caminho absoluto dentro do container
+SEED_SOURCE_MEDIA_DIR = settings.MEDIA_ROOT
 
 # Command
 # comando de gerenciamento customizado 

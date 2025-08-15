@@ -150,4 +150,4 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # define ENTRYPOINT & CMD padrão para o entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["poetry", "run", "gunicorn", "--workers=4", "--bind=0.0.0.0:${PORT:-8000}", "config.wsgi:application"]
+CMD ["poetry", "run", "gunicorn", "--workers=4", "--bind=0.0.0.0:$PORT", "config.wsgi:application"]
