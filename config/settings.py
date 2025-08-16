@@ -32,11 +32,19 @@ DATABASES = {
     )
 }
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1", ".railway.app"])
+ALLOWED_HOSTS = env.list(
+    "ALLOWED_HOSTS",
+    default=[
+        "localhost",
+        "127.0.0.1",
+        ".railway.app",
+        "projeto-final-ebac-frontend.vercel.app"
+    ]
+)
 
 CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[
     "https://*.railway.app",
-    "https://*.vercel.app",
+    "https://projeto-final-ebac-frontend.vercel.app",
     "http://localhost:5173"
 ])
 
@@ -44,7 +52,7 @@ CORS_ALLOWED_ORIGINS = env.list(
     "CORS_ALLOWED_ORIGINS",
     default=[
         "http://localhost:5173",
-        "https://projeto-final-ebac-frontend-elvpg5jrh-pedrosimiaos-projects.vercel.app"
+        "https://projeto-final-ebac-frontend.vercel.app"
     ],
 )
 CORS_ALLOW_CREDENTIALS = True
