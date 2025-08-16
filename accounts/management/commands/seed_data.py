@@ -15,7 +15,6 @@ import secrets
 
 import string
 
-
 # Ferramentas do Django
 
 # BaseCommand: superclasse herdada por comandos customizado do Django 
