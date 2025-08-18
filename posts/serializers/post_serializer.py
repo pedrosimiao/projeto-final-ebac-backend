@@ -3,6 +3,7 @@
 from rest_framework import serializers
 from ..models import Post
 from accounts.serializers import UserBasicSerializer
+from storages.backends.s3boto3 import S3Boto3Storage
 
 # *** PostSummarySerializer ***
 
@@ -115,6 +116,12 @@ class PostSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # busca usuário logado e associa ao campo "user"
         validated_data["user"] = self.context["request"].user
+
+        image_file = validated_data.get('image')
+        if image_file:
+            new_storage = S3Boto3Storage(default_acl='public-read')
+            image_file.storage = new_storage
+            validated_data['image'] = image_file
 
         # ModelSerializer salva o post no banco
         return super().create(validated_data)

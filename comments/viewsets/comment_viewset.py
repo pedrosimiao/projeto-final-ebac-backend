@@ -23,6 +23,8 @@ from ..pagination import CommentCursorPagination
 
 from rest_framework.permissions import IsAuthenticated
 
+from storages.backends.s3boto3 import S3Boto3Storage
+
 # ModelViewsSet: 
 # operações básicas para gerenciamento de model já embutidas (CRUD)
 # (list, retrieve, create, update, destroy)
@@ -91,8 +93,19 @@ class CommentViewSet(ModelViewSet):
     # função chamada automaticamente antes de salvar um novo comment
     # user: autor do comment => usuário autenticado
     def perform_create(self, serializer):
+        # dados validados do serializador
+        validated_data = serializer.validated_data
+
+        # processamento da imagem vídeo antes do save
+        image_file = validated_data.get('image')
+        if image_file:
+            image_file.storage = S3Boto3Storage(default_acl='public-read')
+            
+        video_file = validated_data.get('video')
+        if video_file:
+            video_file.storage = S3Boto3Storage(default_acl='public-read')
+
         serializer.save(user=self.request.user)
-        # re-solicitação da instância do comentário recém-criado para ter o .annotate reply_count
         serializer.instance = self.get_queryset().get(pk=serializer.instance.pk)
 
     # DELETE COMMENT
