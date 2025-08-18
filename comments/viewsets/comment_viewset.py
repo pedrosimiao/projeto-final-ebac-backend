@@ -93,20 +93,29 @@ class CommentViewSet(ModelViewSet):
     # função chamada automaticamente antes de salvar um novo comment
     # user: autor do comment => usuário autenticado
     def perform_create(self, serializer):
-        # dados validados do serializador
-        validated_data = serializer.validated_data
+        try:
+            # dados validados do serializador
+            validated_data = serializer.validated_data
 
-        # processamento da imagem vídeo antes do save
-        image_file = validated_data.get('image')
-        if image_file:
-            image_file.storage = S3Boto3Storage(default_acl='public-read')
+            # processamento da imagem e vídeo antes do save
+            image_file = validated_data.get('image')
+            if image_file:
+                image_file.storage = S3Boto3Storage(default_acl='public-read')
             
-        video_file = validated_data.get('video')
-        if video_file:
-            video_file.storage = S3Boto3Storage(default_acl='public-read')
+            video_file = validated_data.get('video')
+            if video_file:
+                video_file.storage = S3Boto3Storage(default_acl='public-read')
+            
+            # save o comment com o usuário e os arquivos
+            serializer.save(user=self.request.user)
 
-        serializer.save(user=self.request.user)
-        serializer.instance = self.get_queryset().get(pk=serializer.instance.pk)
+            # .annotate reply_count
+            serializer.instance = self.get_queryset().get(pk=serializer.instance.pk)
+            print("INFO: Comment e arquivos salvos com sucesso!")
+
+        except Exception as e:
+            print(f"ERROR: Falha ao salvar comentário ou arquivo. Erro: {e}")
+            raise
 
     # DELETE COMMENT
     # sobrescrição da função destroy (ver um comment específico)
