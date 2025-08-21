@@ -32,4 +32,3 @@ structure.txt
 mock_passwords.txt
 
 docker-compose.yml
-.dockerignore
