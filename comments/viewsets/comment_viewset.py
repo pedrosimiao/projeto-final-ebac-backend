@@ -70,24 +70,22 @@ class CommentViewSet(ModelViewSet):
         parent_comment_id = self.request.query_params.get("parent_comment_id")
 
         if self.action == "list":
-            if not post_id:
-                # Se post_id não for fornecido na listagem, retorna vazio
-                return base_queryset.none()
-
-            # filtra os comments pelo ID do post (post_id é compartilhado por todos os níveis de comments)
-            # mostrar somente comments que são repliesdo comment vigente
-            queryset = base_queryset.filter(post_id=post_id)
-
+            # listar respostas de um comentário pai específico
+            # A rota genérica 'comments/' é usada aqui
             if parent_comment_id:
-                # filtra por comments que são replies a um comment específico
-                queryset = queryset.filter(parent_comment_id=parent_comment_id)
-            else:
-                # filtra por comments de nível superior (replies diretos a um post)
-                # mostrar somente comments principais
-                queryset = queryset.filter(parent_comment__isnull=True)
-
-            return queryset
-
+                # Retorna somente os comentários que são respostas a um comentário pai específico.
+                return base_queryset.filter(parent_comment_id=parent_comment_id)
+            
+            # listar comentários raiz de um post
+            # rota aninhada 'posts/<uuid:post_id>/comments/'
+            if post_id:
+                # comentários que pertencem ao post e que não têm um comentário pai.
+                return base_queryset.filter(post_id=post_id, parent_comment__isnull=True)
+            
+            # Condição de segurança: Se nenhum ID for fornecido, retorna um queryset vazio para evitar
+            # que a API retorne todos os comentários do banco de dados.
+            return base_queryset.none()
+            
         return base_queryset
 
     # função chamada automaticamente antes de salvar um novo comment
