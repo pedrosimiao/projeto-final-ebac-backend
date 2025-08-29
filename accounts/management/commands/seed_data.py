@@ -348,5 +348,11 @@ class Command(BaseCommand):
                     for username, password in MOCK_USER_PASSWORDS.items():
                         f.write(f"{username}: {password}\n")
                 self.stdout.write(self.style.SUCCESS(f"Senhas geradas salvas em {file_path}"))
+
+                self.stdout.write(self.style.NOTICE("\n--- MOCK PASSWORDS (LOG OUTPUT) ---"))
+                for username, password in MOCK_USER_PASSWORDS.items():
+                    self.stdout.write(f"USERNAME: {username} | PASSWORD: {password}")
+                self.stdout.write(self.style.NOTICE("-------------------------------------\n"))
+
             except Exception as e:
                 self.stdout.write(self.style.ERROR(f"Erro ao salvar senhas no arquivo {file_path}: {e}"))
